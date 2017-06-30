@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="moveD" style="height: 100px; width: 100px; background-color: red; position: absolute;">
+			hello world
+		</div>
+		<script type="text/javascript" src="js/22cp.js" ></script>
+		<script>
+			var curried = curry(add, 5);
+			console.log(curried(12));
+			
+			function handleMessage(event){
+				alert('message is:' + event.message);
+			};
+			var target = new EventTarget();
+			target.addHandler("message", handleMessage);
+//			target.fire({type: 'message', message: 'hello world'});
+			
+			function Person(name, age) {
+				EventTarget.call(this);
+				this.name = name;
+				this.age = age;
+			};
+			var prototype = EventTarget.prototype;
+			prototype.constructor = Person;
+			Person.prototype = prototype;
+			Person.prototype.sayName = function(message) {
+				this.fire({type: 'message', message: message});
+			};
+			var person = new Person('zlf', 20);
+			person.addHandler('message', handleMessage);
+//			person.sayName('zlf');
+
+			document.addEventListener('mousemove', function(evt) {
+				var myDiv = document.getElementById('moveD');
+				myDiv.style.left = event.clientX + 'px';
+				myDiv.style.top  = event.clientY + 'px';
+			})
+		</script>
+	</body>
+</html>
