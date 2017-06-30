@@ -51,3 +51,63 @@ EventTarget.prototype = {
 		 }
 	}
 };
+
+//拖放
+var DragDrop = function() {
+	var dragdrap = new EventTarget(),
+		dragging = null,
+		diffX = 0,
+		diffY = 0;
+	
+	function handleEvent(event) {
+		
+		event = event || window.event;
+		var target = event.target || event.srcElement;
+		
+		switch(event.type) {
+			case 'mousedown' :
+				
+				if (target.className.indexOf('draggable') > -1) {
+					dragging = target;
+					diffX = event.clientX - target.offsetLeft;
+					diffY = event.clientY - target.offsetTop;
+					dragdrap.fire({type: 'dragstart', target:dragging, x:event.clientX, y:event.clientY});
+				} else {
+					return;
+				}
+				break;
+				
+			case 'mousemove' :
+				
+				if (dragging !== null && target.className.indexOf('draggable') > -1) {
+					dragging.style.left = (event.clientX - diffX) + 'px';
+					dragging.style.top = (event.clientY - diffY) + 'px';
+					dragdrap.fire({type: 'drag', target:dragging, x:event.clientX, y:event.clientY});
+				} else {
+					return;
+				}
+				break;
+			
+			case 'mouseup' :
+				
+				if (dragging !== null && target.className.indexOf('draggable') > -1) {
+					dragdrap.fire({type: 'dragend', target:dragging, x:event.clientX, y:event.clientY});
+					dragging = null;
+				} else {
+					return;
+				}
+				break;
+		};
+	};
+	dragdrap.enable = function() {
+			Gm.addEvent(document, 'mousedown', handleEvent);
+			Gm.addEvent(document, 'mousemove', handleEvent);
+			Gm.addEvent(document, 'mouseup', handleEvent);
+	};
+	dragdrap.disable = function() {
+			Gm.addEvent(document, 'mousedown', handleEvent);
+			Gm.addEvent(document, 'mousemove', handleEvent);
+			Gm.addEvent(document, 'mouseup', handleEvent);
+	}
+	return dragdrap;
+}();
