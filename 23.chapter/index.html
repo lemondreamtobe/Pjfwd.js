@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html manifest="/manifest.manifest">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var indexedDB= window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB;
+			var request, database;
+			
+			request = indexedDB.open('admin');
+			request.onerror = function(event) {
+				alert('wrong!');
+			};
+			request.onsuccess = function(event) {
+				database = event.target.result;
+			}
+		</script>
+	</body>
+</html>
