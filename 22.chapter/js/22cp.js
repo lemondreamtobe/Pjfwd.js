@@ -97,7 +97,15 @@ function createXHR() {
 		};
 	}
 })();
-//函数柯里化
+
+//函数绑定,ES5有原生bind
+function bind(func, context) {
+	return function() {
+		return fn.apply(context, arguments);
+	}
+};
+
+//函数柯里化,IE8需要手动遍历arguments
 function curry(fn) {
 	var argus = Array.prototype.slice.call(arguments, 1);
 	return function() {
@@ -110,6 +118,15 @@ function add(a, b) {
 	return a + b;
 };
 
+//函数柯里化加bind
+function bind(fn, context) {
+	var args = Array.prototype.slice.call(arguments,2);
+	return function() {
+		var innerargs = Array.prototype.slice.Callbacks(arguments);
+		var finalargs = args.concat(innerargs);
+		return fn.apply(context, finalargs);
+	};
+};
 //自定义事件
 function EventTarget(){
 	this.handlers = {};
