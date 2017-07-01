@@ -1,5 +1,6 @@
 //ES5严格模式，'use strict',目地对ES3中不确定行为加以处理
 //支持严格模式浏览器：IE10+， fox4+, chrome, opera12+
+//特别注明：IE8不支持
 
 //具有可读性
 var a = 1,
@@ -10,11 +11,12 @@ var ECMAScriptDataType = ['Undefined', 'Null', 'Boolean', 'Number', 'String'].co
 //测基本数据类型 typeof：操作符
 
 //Undefined派生自Null, undefined == null--true
+//如果定义一个变量想在未来某一时刻保存对象，应该显示让其保存null
 
 //Booean():转型函数，可对任何数据使用
 //假值： false, "", null, undefined, 0&NaN，记住6个假值其他类型值转换为true
 
-//Number:IEEE754格式，严格模式8进制无效
+//Number:IEEE754格式，严格模式8进制无效，并且ES5也不支持8进制
 //数值转换：Number(), parseInt(), parseFloat()
 /*
  * Number():在++，--， +，位操作(~,|,&，^，<<,>>,>>>)对非数值应用会进行该规则的转换,
@@ -37,7 +39,7 @@ var ECMAScriptDataType = ['Undefined', 'Null', 'Boolean', 'Number', 'String'].co
  * 			提供第二个参数
  * 			parseInt('0xaf', 16) - 175;
  * 			parseInt('af') - NaN;
- * 			parseInt('10', 2) - 2;
+ * 			parseInt('10', 2) - 2; 这里的第二参数是把字符串按第二个参数来解析，toString则把数字转换成参数进制的字符串
  * 			parseInt('10', 8) - 8;
  * 			parseInt('10', 10) - 10;
  * 			parseInt('10', 16) - 16;
@@ -62,7 +64,7 @@ var ECMAScriptDataType = ['Undefined', 'Null', 'Boolean', 'Number', 'String'].co
  */
 /*
  * Object类型是所有对像实例的基础，即所有对象的原型最终指向
- * 			constructor:
+ * 			constructor: 创建当前对象的函数，可以人为更改，用这个属性不安全
  * 			hasOwnProperty(prop):
  * 			isPrototypeOf(object):
  * 			propertyIsEnumerable(prop):
@@ -74,4 +76,15 @@ var ECMAScriptDataType = ['Undefined', 'Null', 'Boolean', 'Number', 'String'].co
  * !:Booean()转换后取反
  * &&:假值优先
  * ||:真值优先
+ * 
+ * + - * /  47页到50页，用处比较少，一般只对数字类型做处理
+ * 
+ * ==会类型转换，===不会
+ * 
+ * for in语句如果对null/undefined会报错，ES5修复，为了保证安全建议用之前检查null/undefined
+ * 
+ * 函数参数以arguments方式存在（类数组），命名参数提供便利，但是非必须
+ * 有callee & length属性
+ * 参数传递按值传递，不可能通过引用传递参数
+ * 
  */
