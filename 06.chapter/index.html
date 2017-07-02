@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var objectProp = ['数据属性', '访问器属性'];
+			var person = {};
+			//ES5 方法修改或定义数据属性 
+			Object.defineProperty(person, 'name', {
+				writable: false,
+				value:'lin'
+			});
+			console.log(person.name);
+			
+			//ES5方法修改或定义访问器属性
+			var book = {
+				_year: 2004,
+				edition:1
+			};
+			Object.defineProperty(book, 'year', {
+				get: function(){
+					return this.year;
+				},
+				set: function(newValue){
+					
+					if (newValue > 2004) {
+						this._year = newValue;
+						this.edition += newValue - 2004;
+					}
+				}
+			});
+			book._year = 2005;
+			console.log(book.edition); //1 ?
+		</script>
+	</body>
+</html>
