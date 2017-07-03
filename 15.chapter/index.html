@@ -5,6 +5,28 @@
 		<title>canvas</title>
 	</head>
 	<body>
-		
+		<canvas id="myC" width="200" height="200"></canvas>
+		<script>
+			var draw = document.getElementById('myC');
+			
+			if (draw.getContext) {
+				var context = draw.getContext('2d');
+				
+				//填充和描边
+				context.strokeStyle = 'red';
+				context.lineCap = 'square';
+				context.lineJoin = 'round';
+				context.lineWidth = '10';
+				context.strokeRect(50,50,50,20);
+				context.fillStyle = 'red';
+				context.fillStyle = 'rgba(0,0,255,0.5)'
+				context.fillRect(10,10,50,20);
+				//导出图像
+				var imgurl = draw.toDataURL('img/png');
+				var img = document.createElement('img');
+				img.src = imgurl;
+				document.body.appendChild(img);
+			}
+		</script>
 	</body>
 </html>
