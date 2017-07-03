@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="id1"/>
+			<input type="text" id="id2"/>
+		</div>
+		<button id="changeFocus">change!</button>
+		<div style="height: 800px; background: greenyellow;">
+			
+		</div>
+		<div style="height: 200px; background: cornflowerblue;" id="scool">
+			
+		</div>
+		<script type="text/javascript" src="../jquery-1.12.1.min.js" ></script>
+		<script type="text/javascript" src="../Gm.js" ></script>
+		<script>
+			Gm.addEvent(window, 'load', function() {
+				document.getElementById('id1').focus(); //让元素获取焦点
+				document.getElementById('scool').scrollIntoView(true);
+			});
+			Gm.addEvent($('#changeFocus'), 'click', function(){
+				
+				if ($('#id1').is(':focus')) {
+						//检查某个元素是否有焦点
+				}
+//				alert('hi')
+			})
+		</script>
+	</body>
+</html>
