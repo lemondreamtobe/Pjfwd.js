@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>BOM</title>
+	</head>
+	<body>
+		<script>
+			//窗口关系，top对象始终指向最高层框架 -> window
+			//top.frames[name of frame];//始终推荐用这个来引用框架
+			
+			//跨浏览器获取窗口位置
+			var leftPos = (typeof window.screenLeft === 'number') ? window.screenLeft : window.screenX;
+			var topPos  = (typeof window.screenTop === 'number') ? window.screenTop : window.screenY;
+			console.log(leftPos + '\n' + topPos);
+			//获取页面视口大小
+			var pageWidth = window.innerWidth;
+			var pageHeight = window.innerHeight;
+			
+			if (typeof pageWidth != 'number') {
+				
+				if (document.compatMode == 'CSS1Compat') {
+					pageWidth = document.documentElement.clientWidth;
+					pageHeight = document.documentElement.clientHeight;
+				} else {
+					pageWidth = document.body.clientWidth;
+					pageHeight = document.body.clientHeight;
+				}
+			};
+			//跨浏览器检测插件
+			//针对不同的插件分别创建检测函数，比如Flash
+			function hasPlugin(name) { 
+				name = name.toLowerCase();
+				for (var i = 0; i < navigator.plugins.length; i++) {
+					
+					if (navigator.plugins[i].name.toLowerCase().indexOf(name) > -1) {
+						return true;
+					};
+				};
+				return false
+			};
+			function ieHasPlugin(name) {
+				try {
+					new ActiveXObject(name);
+					return true;
+				} catch (ex) {
+					return false;
+				}
+			}
+			function hasFlash() {
+				var result = hasPlugin('Flash');
+				
+				if (!result) {
+					result = ieHasPlugin('ShockwaveFlash.ShockwaveFlash');
+					
+					//IE以COM对象方式实现插件，COM对象用唯一标识符标识，检测特定的插件需要知道COM标志符
+					//这也是为什么需要针对每一种插件做特定函数来检测的原因
+				};
+				return result;
+			};
+		</script>
+	</body>
+</html>
