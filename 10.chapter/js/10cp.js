@@ -93,3 +93,84 @@
  * type:2,name:特性名称,value:特性值
  * document.createAttribute()创建特性节点
  */
+//动态脚本
+function loadScript(url) {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = url;
+	document.body.appendChild(script);
+}
+function loadScriptString(code) {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	try{
+		script.appendChild(document.createTextNode(code))
+	} catch(ex) {
+		script.text = code;
+	};
+	document.body.appendChild(script);
+};
+//动态样式
+function loadStyle(url) {
+	var link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = url;
+	var head = document.getElementsByTagName('head')[0];
+	head.appendChild(link);
+};
+function loadStyleString(code) {
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	try{
+		style.appendChild(document.createTextNode(code))
+	} catch(ex) {
+		style.styleSheet.cssText = code;
+	};
+	var head = document.getElementsByTagName('head')[0];
+	head.appendChild(style);
+};
+//操作表格，方法更为易读
+var table = document.createElement("table");
+table.border = 1;
+table.width = '100px';
+table.id = "myTable";
+		
+var tbody = document.createElement("tbody");
+table.appendChild(tbody);
+		
+tbody.insertRow(0);
+tbody.rows[0].insertCell(0);	
+tbody.rows[0].cells[0].appendChild(document.createTextNode("cells 1"));
+		
+tbody.insertRow(1);
+tbody.rows[1].insertCell(0);
+tbody.rows[1].cells[0].appendChild(document.createTextNode("cells 2"));
+		
+document.body.appendChild(table);
+/*
+ * table元素属性和方法:
+ * 	caption:
+ * 	tBodies:<tbody>指针
+ * 	tFoot:
+ *  tHead:
+ * 	rows:表格所有行的集合
+ * 	createTHead():
+ * 	createTFoot:
+ * 	createCaption:
+ * 	deleteTHead:
+ * 	deleteTFoot:
+ * 	deleteCaption:
+ * 	deleteRows(pos):删除指定行
+ * 	insertRow(pos):指定位置插入一行
+ * 
+ * tbody元素属性和方法：
+ * 	rows:body中所有行
+ * 	deleteRows(pos):删除指定行
+ * 	insertRow(pos):指定位置插入一行
+ * 
+ * tr元素属性和方法:
+ * 	cells:tr元素中单元格的集合
+ * 	deleteCells(pos):删除指定格
+ * 	insertCell(pos):指定位置插入单元格，并返回这个单元格的引用
+ */
