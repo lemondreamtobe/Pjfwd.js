@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//闭包引用的是整一个活动对象，而非单纯某个特定的变量
+			//非常重要的概念
+			function createFunctions() {
+			    var result = new Array();
+			    for (var i = 0; i < 10; i++) {
+			        result[i] = function() {
+			            return i;
+			        };
+			    }
+			    return result;
+			};
+			var a = createFunctions();
+			console.log(a); //10,10,10...
+			//因为整个活动对象就是只有一个i,也就是循环结束后的i
+			function createFunctions() {
+			    var result = new Array();
+			    for (var i = 0; i < 10; i++) {
+			        result[i] =function(num) {
+						return function(){
+							return num;
+			           } //用额外的作用域维护闭包
+			        }(i);
+			    }
+			    return result;
+			};
+			var b = createFunctions();
+			console.log(b);
+			
+			//构造函数模式缺点针对每一个实例都创建相同的函数作为方法，在构造对象中达不到函数复用
+			//在创建特权方法时也有这个问题，解决方法：静态私有变量
+			(function() {
+				var privateVariable = 20;
+				
+				function privateFunction () {
+					return false;
+				};
+				MyObject = function() {
+					
+				}; //这里写的会定义在全局当中，在严格模式下报错
+				MyObject.prototype.publicMethod = function() {
+					privateVariable++;
+					return privateFunction();
+				}
+			})();
+			//前面的模式用于为自定义类型创建私有变量和特权方法
+			//模块模式则是为单例创建私有变量和特权方法，单例就是只有一个实例的对象
+			var singleton = function() {
+				var privprop = 20;
+				function privateFunction () {
+					return false;
+				};
+				return {
+					publicProperty: true,
+					publicMethod: function() {
+						privateVariable++;
+						return privateFunction();
+					}
+				};
+			};
+			//增强的模块模式，返回的共有特权方法的对象必须是某种类型的对象且具有增强的方法和属性
+			var singleton = function() {
+				var privprop = 20;
+				function privateFunction () {
+					return false;
+				};
+				var object = new CustomType();
+				
+				object.publicProperty = true;
+				object.publicMethod = function() {
+					privprop++;
+					return privateFunction();
+				};
+				return object;
+			};
+		</script>
+		
+	</body>
+</html>

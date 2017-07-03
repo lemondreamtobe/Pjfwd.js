@@ -227,4 +227,17 @@ var DragDrop = function() {
 	}
 	return dragdrap;
 }();
+DragDrop.addHandler('dragstart', function(event) {
+	var status = document.getElementById('moveD');
+status.innerHTML = 'started dragging ' + event.target.id;
+});
+DragDrop.addHandler('drag', function(event) {
+	var status = document.getElementById('moveD');
+	status.innerHTML = '<br>Dragging' + event.target.id + 'to(' + event.x + ',' + event.y + ')';
+});
+DragDrop.addHandler('dragend', function(event) {
+	var status = document.getElementById('moveD');
+	status.innerHTML = '<br>Dragged' + event.target.id + 'at(' + event.x + ',' + event.y + ')';
+});
+DragDrop.enable();
 
