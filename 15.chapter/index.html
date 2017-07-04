@@ -5,7 +5,7 @@
 		<title>canvas</title>
 	</head>
 	<body>
-		<canvas id="myC" width="200" height="200"></canvas>
+		<canvas id="myC" width="500" height="500" style="border: 1px groove;"></canvas>
 		<script>
 			var draw = document.getElementById('myC');
 			
@@ -14,18 +14,47 @@
 				
 				//填充和描边
 				context.strokeStyle = 'red';
-				context.lineCap = 'square';
-				context.lineJoin = 'round';
-				context.lineWidth = '10';
-				context.strokeRect(50,50,50,20);
-				context.fillStyle = 'red';
-				context.fillStyle = 'rgba(0,0,255,0.5)'
-				context.fillRect(10,10,50,20);
+////				context.lineCap = 'square';
+////				context.lineJoin = 'round';
+////				context.lineWidth = '10';
+//				context.strokeRect(50,50,50,20);
+//				context.fillStyle = 'red';
+//				context.fillStyle = 'rgba(0,0,255,0.5)'
+//				context.fillRect(10,10,50,20);
 				//导出图像
-				var imgurl = draw.toDataURL('img/png');
-				var img = document.createElement('img');
-				img.src = imgurl;
-				document.body.appendChild(img);
+//				var imgurl = draw.toDataURL('img/png');
+//				var img = document.createElement('img');
+//				img.src = imgurl;
+//				document.body.appendChild(img);
+				context.beginPath();
+				context.arc(250, 250, 220, 0, 2 * Math.PI,false);
+				context.moveTo(464,250);
+				context.arc(250,250,215,0,2*Math.PI,false);
+				context.font='bold 14px Arial';
+				context.textAlign = 'center';
+				context.testBaseline = 'middle';
+				context.fillText('12',250,70);
+				context.translate(250,250);
+				context.moveTo(0,0);
+				context.lineTo(0,-145);
+				context.moveTo(0,0);
+				context.lineTo(-145,0);
+				context.stroke();
+//				context.translate(-200,-200);
+//				context.clearRect(50,50,220,220);
+				var angle = 1;
+				setInterval(function(){
+					context.translate(-250,-250);
+					context.clearRect(100,100,200,200);
+					context.translate(250, 250);
+					context.rotate(angle++);
+					context.moveTo(0,0);
+					context.lineTo(0,-145);
+					context.moveTo(0,0);
+					context.lineTo(-145,0);
+					context.stroke();	
+				},2000)
+				
 			}
 		</script>
 	</body>
