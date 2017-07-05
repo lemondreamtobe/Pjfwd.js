@@ -14,6 +14,11 @@
 				
 				//填充和描边
 				context.strokeStyle = 'red';
+//				context.moveTo(250,250);
+//				context.lineTo(0, 150);
+//				context.stroke();
+//				context.lineTo(150,150);
+//				context.stroke();
 ////				context.lineCap = 'square';
 ////				context.lineJoin = 'round';
 ////				context.lineWidth = '10';
@@ -30,30 +35,64 @@
 				context.arc(250, 250, 220, 0, 2 * Math.PI,false);
 				context.moveTo(464,250);
 				context.arc(250,250,215,0,2*Math.PI,false);
+				context.closePath();
+				context.stroke();
 				context.font='bold 14px Arial';
 				context.textAlign = 'center';
 				context.testBaseline = 'middle';
-				context.fillText('12',250,70);
+				context.fillText('12',250,60);
+				context.beginPath();
 				context.translate(250,250);
 				context.moveTo(0,0);
-				context.lineTo(0,-145);
-				context.moveTo(0,0);
-				context.lineTo(-145,0);
+				context.lineTo(0,-125);
+				context.closePath();
 				context.stroke();
+				var angle = 0.1;
+				setInterval(function(){
+				
+					context.translate(-125,-125);
+					context.clearRect(0,0,250,250);
+					context.beginPath();
+					context.moveTo(0,0);
+					context.lineTo(0,-105);
+					context.closePath();
+					context.stroke();
+					context.beginPath();
+					context.translate(125, 125);
+					context.rotate(angle);
+					context.moveTo(0,0);
+					context.lineTo(0,-125);
+					
+					context.closePath();
+					context.stroke();
+					
+				},1000);
+//				context.beginPath();
+//				context.translate(-145,-145);
+//				context.moveTo(0,0);
+//				context.lineTo(50,50);
+//				context.closePath();
+//				context.stroke();
+//				context.closePath();
+//				context.moveTo(0,0);
+//				context.fillRect(0,0,50,50);
 //				context.translate(-200,-200);
 //				context.clearRect(50,50,220,220);
-				var angle = 1;
-				setInterval(function(){
-					context.translate(-250,-250);
-					context.clearRect(100,100,200,200);
-					context.translate(250, 250);
-					context.rotate(angle++);
-					context.moveTo(0,0);
-					context.lineTo(0,-145);
-					context.moveTo(0,0);
-					context.lineTo(-145,0);
-					context.stroke();	
-				},2000)
+//				context.translate(250,250);
+//				context.moveTo(0,0);
+//				context.lineTo(0,-145);
+//				context.stroke()
+//				setInterval(function(){
+//					var draw = document.getElementById('myC');
+//					var context = draw.getContext('2d');
+//					context.translate(-200,-200);
+//					context.clearRect(50,50,220,220);
+//					context.translate(-200,-200);
+//					context.translate(250,250);
+//					context.moveTo(0,0);
+//					context.lineTo(0,-145);
+//					context.stroke()
+//				},2000)
 				
 			}
 		</script>
