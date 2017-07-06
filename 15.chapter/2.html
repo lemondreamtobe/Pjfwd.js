@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>WEBGL</title>
+	</head>
+	<body>
+		<canvas id="A" width="500" height="500" style="border: 1px groove;"></canvas>
+		<!--<img src="img/pic.jpg" id="img"/>-->
+		<script>
+			var draw = document.getElementById('A');
+			
+			if (draw.getContext) {
+				try {
+					var gl = draw.getContext('experimental-webgl');
+				} catch(ex) {
+					alert('can t support');
+					return;
+				};
+				if (gl) {
+					gl.clearColor(0,0,0,1);
+					gl.clear(gl.COLOR_BUFFER_BIT);
+					
+				}
+			};
+			var buffer = new ArrayBuffer(20);
+			
+			console.log(buffer);
+		</script>
+	</body>
+</html>
