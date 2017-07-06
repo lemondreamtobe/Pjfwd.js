@@ -7,7 +7,7 @@
 	<body>
 		<script>
 			//窗口关系，top对象始终指向最高层框架 -> window
-			//top.frames[name of frame];//始终推荐用这个来引用框架
+			top.frames[name of frame];//始终推荐用这个来引用框架
 			
 			//跨浏览器获取窗口位置
 			var leftPos = (typeof window.screenLeft === 'number') ? window.screenLeft : window.screenX;
