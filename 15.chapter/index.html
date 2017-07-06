@@ -3,9 +3,26 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>canvas</title>
+		<style>
+			#myB{
+				position: absolute;
+				left: 8px;
+				top: 8px;
+			}
+			#myC{
+				display: inline;
+			}
+			#myD{
+				position: absolute;
+				left: 8px;
+				top: 8px;
+			}
+		</style>
 	</head>
 	<body>
+		<canvas id="myB" width="500" height="500" style="border: 1px groove;"></canvas>
 		<canvas id="myC" width="500" height="500" style="border: 1px groove;"></canvas>
+		<canvas id="myD" width="500" height="500" style="border: 1px groove;"></canvas>
 		<script>
 			var draw = document.getElementById('myC');
 			
@@ -41,13 +58,24 @@
 				context.textAlign = 'center';
 				context.testBaseline = 'middle';
 				context.fillText('12',250,60);
+				context.fillText('1',350,90);
+				context.fillText('2',420,160);
+				context.fillText('3',450,265);
+				context.fillText('4',420,365);
+				context.fillText('5',350,430);
+				context.fillText('6',250,455);
+				context.fillText('7',150,430);
+				context.fillText('8',80,365);
+				context.fillText('9',50,265);
+				context.fillText('10',80,160);
+				context.fillText('11',150,90);
 				context.beginPath();
 				context.translate(250,250);
 				context.moveTo(0,0);
 				context.lineTo(0,-125);
 				context.closePath();
 				context.stroke();
-				var angle = 0.1;
+				var angle = 0.11;
 				setInterval(function(){
 				
 					context.translate(-125,-125);
@@ -57,38 +85,61 @@
 					context.rotate(angle);
 					context.moveTo(0,0);
 					context.lineTo(0,-125);
-					
 					context.closePath();
-					context.stroke();
-					
-				},1000);
-//				context.beginPath();
-//				context.translate(-145,-145);
-//				context.moveTo(0,0);
-//				context.lineTo(50,50);
-//				context.closePath();
-//				context.stroke();
-//				context.closePath();
-//				context.moveTo(0,0);
-//				context.fillRect(0,0,50,50);
-//				context.translate(-200,-200);
-//				context.clearRect(50,50,220,220);
-//				context.translate(250,250);
-//				context.moveTo(0,0);
-//				context.lineTo(0,-145);
-//				context.stroke()
-//				setInterval(function(){
-//					var draw = document.getElementById('myC');
-//					var context = draw.getContext('2d');
-//					context.translate(-200,-200);
-//					context.clearRect(50,50,220,220);
-//					context.translate(-200,-200);
-//					context.translate(250,250);
-//					context.moveTo(0,0);
-//					context.lineTo(0,-145);
-//					context.stroke()
-//				},2000)
+					context.stroke();	
+				},1000);				
+			};
+			var drawo = document.getElementById('myD');
+			
+			if (drawo.getContext) {
+				var contexto = drawo.getContext('2d');
 				
+				//填充和描边
+				contexto.strokeStyle = 'red';
+				contexto.beginPath();
+				contexto.translate(250,250);
+				contexto.moveTo(0,0);
+				contexto.lineTo(0,-105);
+				contexto.closePath();
+				contexto.stroke();
+				setInterval(function(){
+				
+					contexto.translate(-105,-105);
+					contexto.clearRect(0,0,210,210);
+					contexto.beginPath();
+					contexto.translate(105, 105);
+					contexto.rotate(angle);
+					contexto.moveTo(0,0);
+					contexto.lineTo(0,-105);
+					contexto.closePath();
+					contexto.stroke();	
+				},60000);			
+			}
+			var drawb = document.getElementById('myB');
+			
+			if (drawb.getContext) {
+				var contextb = drawb.getContext('2d');
+				
+				//填充和描边
+				contextb.strokeStyle = 'red';
+				contextb.beginPath();
+				contextb.translate(250,250);
+				contextb.moveTo(0,0);
+				contextb.lineTo(0,-85);
+				contextb.closePath();
+				contextb.stroke();
+				setInterval(function(){
+				
+					contextb.translate(-85,-85);
+					contextb.clearRect(0,0,170,170);
+					contextb.beginPath();
+					contextb.translate(85, 85);
+					contextb.rotate(angle);
+					contextb.moveTo(0,0);
+					contextb.lineTo(0,-85);
+					contextb.closePath();
+					contextb.stroke();	
+				},300000);			
 			}
 		</script>
 	</body>
