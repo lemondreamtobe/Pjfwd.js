@@ -5,10 +5,18 @@
 		<title>表单脚本</title>
 	</head>
 	<body>
-		<select id="seA">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-		</select>
+		<form id="myForm">
+			<select id="seA">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>
+		</form>
+	<script>
+		var a = document.getElementById('seA');
+		a.addEventListener('change', function (e) {
+			alert(e.target.options[a.selectedIndex].text);
+        })
+	</script>
 	</body>
 </html>
