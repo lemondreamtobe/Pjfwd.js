@@ -13,9 +13,13 @@
 			</select>
 		</form>
 	<script>
+
+		//获取下拉选框的DOM原生方法
 		var a = document.getElementById('seA');
 		a.addEventListener('change', function (e) {
-			alert(e.target.options[a.selectedIndex].value);
+		    console.log(e.target == a);
+			alert(e.target.options[e.target.selectedIndex].value);
+			alert(a.selectedIndex);
         });
 	</script>
 	</body>
