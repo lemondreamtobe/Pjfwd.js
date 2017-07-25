@@ -221,9 +221,9 @@ var DragDrop = function() {
 			Gm.addEvent(document, 'mouseup', handleEvent);
 	};
 	dragdrap.disable = function() {
-			Gm.addEvent(document, 'mousedown', handleEvent);
-			Gm.addEvent(document, 'mousemove', handleEvent);
-			Gm.addEvent(document, 'mouseup', handleEvent);
+			Gm.removeEvent(document, 'mousedown', handleEvent);
+			Gm.removeEvent(document, 'mousemove', handleEvent);
+			Gm.removeEvent(document, 'mouseup', handleEvent);
 	}
 	return dragdrap;
 }();
@@ -233,11 +233,11 @@ status.innerHTML = 'started dragging ' + event.target.id;
 });
 DragDrop.addHandler('drag', function(event) {
 	var status = document.getElementById('moveD');
-	status.innerHTML = '<br>Dragging' + event.target.id + 'to(' + event.x + ',' + event.y + ')';
+	status.innerHTML = 'Dragging' + event.target.id + 'to(' + event.x + ',' + event.y + ')';
 });
 DragDrop.addHandler('dragend', function(event) {
 	var status = document.getElementById('moveD');
-	status.innerHTML = '<br>Dragged' + event.target.id + 'at(' + event.x + ',' + event.y + ')';
+	status.innerHTML = 'Dragged' + event.target.id + 'at(' + event.x + ',' + event.y + ')';
 });
 DragDrop.enable();
 
