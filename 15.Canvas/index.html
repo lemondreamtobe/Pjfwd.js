@@ -25,23 +25,11 @@
 		</style>
 	</head>
 	<body>
-		<canvas id="myA" width="500" height="500" style="border: 1px groove;"></canvas>
+
 		<canvas id="myB" width="500" height="500" style="border: 1px groove;"></canvas>
 		<canvas id="myC" width="500" height="500" style="border: 1px groove;"></canvas>
 		<canvas id="myD" width="500" height="500" style="border: 1px groove;"></canvas>
-		<img src="img/pic.jpg"  style="position: absolute; left: 1010px;"/>
 		<script>
-			var drawA = document.getElementById('myA');
-			
-			if (drawA.getContext) {
-				var contextA = drawA.getContext('2d');
-				contextA.strokeStyle = 'red';
-				contextA.strokeRect(0,0,20,20);
-				var img = document.images[0];
-				contextA.drawImage(img,0,0);
-				
-				
-			}
 			var draw = document.getElementById('myC');
 			
 			if (draw.getContext) {
