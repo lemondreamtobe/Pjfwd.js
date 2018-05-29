@@ -30,8 +30,11 @@ var ECMAScriptDataType = ['Undefined', 'Null', 'Boolean', 'Number', 'String'].co
  * 						: "" - 0
  * 						: 以上五条以外 's5' - NaN  '5s' - NaN
  * 			Object      : valueOf() - if(NaN) - toString()，实际如果改写valueOf返回NaN,那么Number(object)就是NaN,不经过toString
- * 						7.11号补充：存在valueOf并且有返回值无论是否是NAN都返回这个值，如果存在valueOf无返回值或者没有valueOF则调用toString()
+ * 						7.11号补充：存在valueOf并且有返回值无论是否是NAN都返回这个值，如果没有valueOF则调用toString()
  * 						toString优先的情况下也是这样
+ * 			var obj = {};
+ * 			obj.valueOf = function(){console.log('a');return 'obj'};
+ * 			obj.toString = function(){console.log('b'); return '1'};
  * 
  * 以下两种方法专用于转换字符串
  * parseInt():
